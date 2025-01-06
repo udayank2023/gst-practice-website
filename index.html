@@ -3,93 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GST Practice Website</title>
+    <title>Advanced GST Practice Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>GST Practice Website</h1>
-        <p>Your go-to platform for practicing GST processes in Tally</p>
+        <h1>GST Practice Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="#gst-invoice">GST Invoice Generator</a></li>
+                <li><a href="#gstr1">File GSTR-1</a></li>
+                <li><a href="#gstr3b">File GSTR-3B</a></li>
+                <li><a href="#gst-calculation">GST Calculation</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#gstRegistration">GST Registration</a></li>
-            <li><a href="#gstInvoice">GST Invoice Generation</a></li>
-            <li><a href="#gstReturn">GST Return Filing</a></li>
-            <li><a href="#educationalMaterial">Educational Resources</a></li>
-        </ul>
-    </nav>
 
-    <section id="gstRegistration">
-        <h2>GST Registration Form</h2>
-        <form id="gstRegistrationForm">
-            <label for="businessName">Business Name</label>
-            <input type="text" id="businessName" placeholder="Enter business name" required>
-            
-            <label for="pan">PAN</label>
-            <input type="text" id="pan" placeholder="Enter PAN" required>
-            
-            <label for="gstin">GSTIN</label>
-            <input type="text" id="gstin" placeholder="Enter GSTIN" required>
-            
-            <button type="button" onclick="submitRegistration()">Submit</button>
-        </form>
-        <p id="registrationResult"></p>
-    </section>
+    <main>
+        <!-- GST Invoice Generator -->
+        <section id="gst-invoice">
+            <h2>GST Invoice Generator</h2>
+            <form id="invoice-form">
+                <label for="invoice-number">Invoice Number:</label>
+                <input type="text" id="invoice-number" required><br>
 
-    <section id="gstInvoice">
-        <h2>GST Invoice Generator</h2>
-        <form id="gstInvoiceForm">
-            <label for="invoiceNumber">Invoice Number</label>
-            <input type="text" id="invoiceNumber" placeholder="Enter invoice number" required>
-            
-            <label for="itemDescription">Item Description</label>
-            <input type="text" id="itemDescription" placeholder="Enter item description" required>
-            
-            <label for="gstRate">GST Rate (%)</label>
-            <input type="number" id="gstRate" placeholder="Enter GST rate" required>
-            
-            <label for="amount">Amount (₹)</label>
-            <input type="number" id="amount" placeholder="Enter amount" required>
-            
-            <button type="button" onclick="generateInvoice()">Generate Invoice</button>
-        </form>
-        <p id="invoiceResult"></p>
-    </section>
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" required><br>
 
-    <section id="gstReturn">
-        <h2>GST Return Filing</h2>
-        <form id="gstReturnForm">
-            <label for="sales">Sales Amount</label>
-            <input type="number" id="sales" placeholder="Enter sales amount" required>
-            
-            <label for="purchases">Purchase Amount</label>
-            <input type="number" id="purchases" placeholder="Enter purchase amount" required>
-            
-            <label for="outputTax">Output Tax</label>
-            <input type="number" id="outputTax" placeholder="Enter output tax" required>
-            
-            <label for="inputTax">Input Tax Credit (ITC)</label>
-            <input type="number" id="inputTax" placeholder="Enter ITC" required>
-            
-            <button type="button" onclick="fileReturn()">File Return</button>
-        </form>
-        <p id="returnResult"></p>
-    </section>
+                <label for="item">Item Description:</label>
+                <input type="text" id="item" required><br>
 
-    <section id="educationalMaterial">
-        <h2>Educational Resources</h2>
-        <ul>
-            <li><a href="#">What is GST?</a></li>
-            <li><a href="#">How to Use Tally for GST?</a></li>
-            <li><a href="#">GST Calculation Methods</a></li>
-            <li><a href="#">GST Return Filing Process</a></li>
-        </ul>
-    </section>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" required><br>
+
+                <label for="rate">Rate (per item):</label>
+                <input type="number" id="rate" required><br>
+
+                <label for="gst-rate">GST Rate (%)</label>
+                <input type="number" id="gst-rate" required><br>
+
+                <button type="button" onclick="generateInvoice()">Generate Invoice</button>
+            </form>
+            <div id="invoice-output"></div>
+        </section>
+
+        <!-- GSTR-1 Filing -->
+        <section id="gstr1">
+            <h2>File GSTR-1</h2>
+            <form id="gstr1-form">
+                <label for="sales">Total Sales:</label>
+                <input type="number" id="sales" required><br>
+
+                <label for="output-tax">Output GST on Sales:</label>
+                <input type="number" id="output-tax" required><br>
+
+                <label for="purchases">Total Purchases:</label>
+                <input type="number" id="purchases" required><br>
+
+                <label for="input-tax">Input Tax Credit (ITC):</label>
+                <input type="number" id="input-tax" required><br>
+
+                <button type="button" onclick="fileGstr1()">File GSTR-1</button>
+            </form>
+            <div id="gstr1-output"></div>
+        </section>
+
+        <!-- GSTR-3B Filing -->
+        <section id="gstr3b">
+            <h2>File GSTR-3B</h2>
+            <form id="gstr3b-form">
+                <label for="total-taxable">Total Taxable Sales:</label>
+                <input type="number" id="total-taxable" required><br>
+
+                <label for="gst-paid">GST Paid on Sales:</label>
+                <input type="number" id="gst-paid" required><br>
+
+                <label for="itc">ITC Claimed:</label>
+                <input type="number" id="itc" required><br>
+
+                <button type="button" onclick="fileGstr3b()">File GSTR-3B</button>
+            </form>
+            <div id="gstr3b-output"></div>
+        </section>
+
+        <!-- GST Calculation -->
+        <section id="gst-calculation">
+            <h2>GST Calculation</h2>
+            <form id="gst-calc-form">
+                <label for="calc-amount">Amount (₹):</label>
+                <input type="number" id="calc-amount" required><br>
+
+                <label for="gst-percentage">GST Rate (%):</label>
+                <input type="number" id="gst-percentage" required><br>
+
+                <button type="button" onclick="calculateGST()">Calculate GST</button>
+            </form>
+            <div id="gst-calc-output"></div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 GST Practice Website</p>
+        <p>GST Practice Portal for Learning Purpose Only</p>
     </footer>
 
     <script src="script.js"></script>
